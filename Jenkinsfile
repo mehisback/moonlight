@@ -2,12 +2,6 @@ pipeline {
   agent any
   stages {
     stage('Download') {
-      agent {
-        node {
-          label 'slave'
-        }
-
-      }
       steps {
         nodejs('node-latest') {
           sh 'npm install'
@@ -18,12 +12,6 @@ pipeline {
     }
 
     stage('build') {
-      agent {
-        node {
-          label 'slave'
-        }
-
-      }
       steps {
         nodejs('node-latest') {
           sh 'ng build'
