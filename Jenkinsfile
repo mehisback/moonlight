@@ -20,5 +20,11 @@ pipeline {
       }
     }
 
+    stage('deploy') {
+      steps {
+        sh 'rsync -avz -e "ssh" ./dist/moonlight/* root@123.43.54.23:/tmp'
+      }
+    }
+
   }
 }
