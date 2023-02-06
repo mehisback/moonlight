@@ -12,9 +12,23 @@ pipeline {
     }
 
     stage('build') {
-      steps {
-        nodejs('node-latest') {
-          sh 'ng build'
+      parallel {
+        stage('build') {
+          steps {
+            nodejs('node-latest') {
+              sh 'ng build'
+            }
+
+          }
+        }
+
+        stage('test') {
+          steps {
+            nodejs('node-latest') {
+              sh 'ng test'
+            }
+
+          }
         }
 
       }
